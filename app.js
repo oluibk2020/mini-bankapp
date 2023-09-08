@@ -31,7 +31,7 @@ transaction.addEventListener('click', (e) => {
    console.log(lists);
    let li = ''
    for (const list of lists) {
-       li += `<li>The transaction type is ${list.type} and the amount is ${list.amount} and date is ${list.date}</li>`
+       li += `<li>The transaction type is ${list.type}, the amount is ${list.amount} and transaction date is ${list.date}</li>`
     document.querySelector('ol').innerHTML = li
    }
 })

@@ -39,7 +39,7 @@ form {
     margin-top: 20px;
 }
 
-input[type="text"] {
+input[type="number"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
