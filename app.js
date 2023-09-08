@@ -3,6 +3,7 @@ const screen = document.querySelector("#screen")
 const withdraw = document.querySelector("#withdraw");
 const transaction = document.querySelector("#history");
 const form = document.querySelector("form");
+const msg = document.querySelector('#message')
 
 
 form.addEventListener('submit', (e) => {
@@ -50,14 +51,15 @@ class Wallet {
         this._transactionDate = dateTrans
         this._processDeposit(amount, dateTrans);
         this._updateScreen()
+        msg.textContent = `$${amount} has been withdrawn successfully`
+               msg.style.color = 'green'
         this._clearInput()
     }
     
     withdraw(amount, dateTrans) {
-        if (amount > this._balance) {
-               const errormsg = document.querySelector('#message')
-               errormsg.textContent = "Not enough funds"
-               errormsg.style.color = 'red'
+        if (amount > this._balance || amount === 0) {
+               msg.textContent = "Not enough funds"
+               msg.style.color = 'red'
                this._clearInput()
            return
         } else {
@@ -65,7 +67,10 @@ class Wallet {
             this._transactionDate = dateTrans
             this._processWithdraw(amount, dateTrans);
             this._updateScreen()
+            msg.textContent = `$${amount} has been withdrawn successfully`
+               msg.style.color = 'blue'
             this._clearInput()
+            return
         }
     }
     
