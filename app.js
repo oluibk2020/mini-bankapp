@@ -31,10 +31,12 @@ transaction.addEventListener('click', (e) => {
    console.log(lists);
    let li = ''
    for (const list of lists) {
-       li += `<li>The transaction type is ${list.type}, the amount is ${list.amount} and transaction date is ${list.date}</li>`
+       li += `<li>The transaction type is ${list.type}, the amount is $${list.amount} and transaction date is ${list.date}</li>`
     document.querySelector('ol').innerHTML = li
    }
 })
+
+
 
 class Wallet {
     constructor() {
@@ -53,8 +55,11 @@ class Wallet {
     
     withdraw(amount, dateTrans) {
         if (amount > this._balance) {
-            console.log("Not enough funds");
-            return;
+               const errormsg = document.querySelector('#message')
+               errormsg.textContent = "Not enough funds"
+               errormsg.style.color = 'red'
+               this._clearInput()
+           return
         } else {
             this._balance -= amount;
             this._transactionDate = dateTrans
@@ -77,6 +82,9 @@ _updateScreen(){
 
 _clearInput(){
     document.querySelector("#amount").value = 0
+    setTimeout(() => {
+        document.querySelector('#message').textContent = ''
+    }, 3000);
 }
 
 getBalance() {
